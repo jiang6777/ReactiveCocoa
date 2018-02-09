@@ -48,14 +48,16 @@ Demo介绍了ReactiveCocoa的以下几个功能.
 		});
 		return nil;
 	}];
-	RACSignal *requestSecond = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+
+
+RACSignal *requestSecond = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 			NSLog(@"第二个请求");
 			[subscriber sendNext:@"第二个请求"];
 			[subscriber sendCompleted];
 		});
 		return nil;
-	}];
+}];
 	[self rac_liftSelector:@selector(updateUI:data2:) withSignalsFromArray:@[requestFirst,requestSecond]];
   
   - (void)updateUI:(NSString *)data1 data2:(NSString *)data2
