@@ -2,6 +2,7 @@
 reactiveCocoa的使用基本介绍
 
 Demo介绍了ReactiveCocoa的以下几个功能.
+
 1、按钮事件的监听
 方式一、//监听按钮事件
 	[[nextView.nextBtn rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -9,6 +10,7 @@ Demo介绍了ReactiveCocoa的以下几个功能.
 		 NSLog(@"下一步按钮点击");
 //		 return [RACSignal empty];
 	 }];
+	 
 方式二：
 //按钮事件监听
 	[self.closeBtn rac_signalForControlEvents:UIControlEventTouchUpInside];
@@ -20,6 +22,7 @@ Demo介绍了ReactiveCocoa的以下几个功能.
 		return [RACSignal empty];
 	}];
   
+  
   2、通知中心事件
   self.observer = [[NSNotificationCenter defaultCenter]
 					 addObserverForName:UIKeyboardWillShowNotification
@@ -29,10 +32,12 @@ Demo介绍了ReactiveCocoa的以下几个功能.
 						 NSLog(@"textField clicked");
 						 
 					 }];
+					 
 3、监听文本框文字的改变
 [_phoneTextField.rac_textSignal subscribeNext:^(id x) {
 		NSLog(@"手机号码1:%@",x);
 	}];
+ 
  
  4、页面处理多次请求，多个请求执行完成才刷新界面
  RACSignal *requestFirst = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
